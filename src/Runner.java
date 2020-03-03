@@ -6,7 +6,6 @@ public class Runner {
     private String[] mediumOptions = {"fiveLetterWordArray"};
     private String[] largeOptions = {"sevenLetterWordArray"};
 
-
     public static void main (String args[]) {
         Human human = new Human();
         Computer computer = new Computer();
@@ -20,14 +19,14 @@ public class Runner {
         computer.setWord(computer.getName());
 
         human.scatterWord(humanGrid, compGrid, hidGrid);
-        computer.scatterWord();
+        computer.scatterWord(humanGrid, compGrid, hidGrid);
+
+        System.out.println("STARTING BOARD: " + human.getName() + "'s view");
+        human.printCurrentGrid(human.makeHumView(humanGrid));
+        human.firstSpot();
     }
 
     //CODEBREAKER
-
-    //Computer selects spots for ships and sets letters in them
-
-    //Human selects spots for ships and sets letters in them
 
     //BATTLESHIP ROUND
     //Computer and human each start by choosing a coordinate on the other player's array. Human starts (could try to

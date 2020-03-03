@@ -4,7 +4,6 @@ public class Position {
     private int yCoor;
 
     private String status;
-    private String letter;
     private String compView;
     private String humView;
     private String hidView;
@@ -12,26 +11,11 @@ public class Position {
     public Position (int x, int y) {
         this.xCoor = x;
         this.yCoor = y;
-        this.letter = "z";
 
         this.status = "empty";
         this.compView = "\uD83C\uDF0A";
         this.humView = "\uD83C\uDF0A";
         this.hidView = "\uD83C\uDF0A";
-    }
-
-    public String selectString(String type) {
-        String result = "";
-
-        if (type.equals("human")) {
-            result = getHumView();
-        } else if (type.equals("computer")) {
-            result = getCompView();
-        } else if (type.equals("hidden")) {
-            result = getHidView();
-        }
-
-        return result;
     }
 
     public int getxCoor() {
@@ -40,10 +24,6 @@ public class Position {
 
     public int getyCoor() {
         return yCoor;
-    }
-
-    public String getLetter() {
-        return letter;
     }
 
     public String getStatus() {
