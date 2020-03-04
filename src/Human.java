@@ -14,37 +14,15 @@ public class Human extends Player {
         setName(userName);
     }
 
-    public Position[][][] scatterWord(Position[][] humGrid, Position[][] compGrid, Position[][] hidGrid) {
+    public void scatterWord(Position[][] humGrid, Position[][] compGrid, Position[][] hidGrid) {
         for (int i = 0; i < this.getWord().length(); i++) {
             int x = 1;
             int y = 1;
             System.out.println("You are now going to place the letter " + getWord().substring(i) + ". Type in an " +
                     "x-coordinate first, from 1 to 10.");
-            if (hsc.hasNextInt()) {
-                x = hsc.nextInt() - 1;
-            } else {
-                System.out.println("That didn't work. Please try again.");
-                if (hsc.hasNextInt()) {
-                    x = hsc.nextInt() - 1;
-                } else {
-                    System.out.println("That didn't work either. You will now restart word placement.");
-                    scatterWord(humGrid, compGrid, hidGrid);
-                }
-            }
-            //make handling function for getting coordinates and processing them, to avoid repeating yourself
+            x = coordinateHandling("word placement along the x-axis", x, humGrid, compGrid, hidGrid);
             System.out.println("Now, type in a y-coordinate, again from 1 to 10.");
-            if (hsc.hasNextInt()) {
-                y = hsc.nextInt() - 1;
-            } else {
-                System.out.println("That didn't work. Please try again.");
-                if (hsc.hasNextInt()) {
-                    y = hsc.nextInt() - 1;
-                } else {
-                    System.out.println("That didn't work either. You will now restart word placement.");
-                    y++;
-                    scatterWord(humGrid, compGrid, hidGrid);
-                }
-            }
+            y = coordinateHandling("word placement along the y-axis", y, humGrid, compGrid, hidGrid);
                 Position pos = new Position(x, y);
                 pos.setHumView(getWord().substring(i, i + 1));
                 pos.setHidView(getWord().substring(i, i + 1));
@@ -66,17 +44,53 @@ public class Human extends Player {
                 }
             }
         }
-        Position[][][] group = {humGrid, compGrid, hidGrid};
-        return group;
     }
 
-    public void firstSpot() {
-        int x;
-        int y;
+    public int coordinateHandling(String process, int x, Position[][] humGrid, Position[][] compGrid, Position[][] hidGrid) {
+        if (hsc.hasNextInt()) {
+            x = hsc.nextInt() - 1;
+        } else {
+            System.out.println("That didn't work. Please try again.");
+            if (hsc.hasNextInt()) {
+                x = hsc.nextInt() - 1;
+            } else {
+                System.out.println("That didn't work either. You will now restart " + process + ".");
+                coordinateHandling(process, x, humGrid, compGrid, hidGrid);
+            }
+        }
+        return x;
+    }
+
+    public void firstSpot(Position[][] humGrid, Position[][] compGrid, Position[][] hidGrid) {
+        int x = 1;
+        int y = 1;
         System.out.println("");
         System.out.println("Pick a coordinate to land first. You will have to move spot by spot from here for the rest of the game.");
-        System.out.println("First pick an x-coordinate: ");
+        System.out.println("x-coordinate: ");
+        x = coordinateHandling("position selection along the x-axis", x, humGrid, compGrid, hidGrid);
+        System.out.println("y-coordinate");
+        y = coordinateHandling("position selection along the y-axis", y, humGrid, compGrid, hidGrid);
 
+        humGrid[x][y].setStatus("hum");
+        compGrid[x][y].setStatus("hum");
+        hidGrid[x][y].setStatus("hum");
+
+        humGrid[x][y].setHumView("⛵");
+        compGrid[x][y].setCompView("⛵");
+        hidGrid[x][y].setHidView("⛵");
+        hidGrid[x][y].setHumView("⛵");
+        hidGrid[x][y].setCompView("⛵");
+
+        System.out.println("Here is the board:");
+        this.printCurrentGrid(this.makeHumView(humGrid));
+        this.turn(1);
+    }
+
+    public void turn (int numMoves) {
+        while (numMoves > 0) {
+            numMoves--;
+        }
+        System.out.println("Computer's turn.");
     }
 
     public String[][] makeHumView (Position[][] grid) {

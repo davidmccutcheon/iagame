@@ -2,9 +2,7 @@ import java.util.*;
 
 public class Runner {
 
-    private String[] smallOptions = {"threeLetterWordArray"};
-    private String[] mediumOptions = {"fiveLetterWordArray"};
-    private String[] largeOptions = {"sevenLetterWordArray"};
+    //Consider making the hid view the master view and just doing an automatic update of the others based off that
 
     public static void main (String args[]) {
         Human human = new Human();
@@ -23,7 +21,8 @@ public class Runner {
 
         System.out.println("STARTING BOARD: " + human.getName() + "'s view");
         human.printCurrentGrid(human.makeHumView(humanGrid));
-        human.firstSpot();
+        human.firstSpot(humanGrid, compGrid, hidGrid);
+        computer.firstSpot(humanGrid, compGrid, hidGrid);
     }
 
     //CODEBREAKER
@@ -43,13 +42,13 @@ public class Runner {
 
 
     //Arrays:
-        //Human grid:       Symbols for positions of human ⚓ and computer ⛵, blank spots and undetected computer ships
+        //Human grid:       Symbols for positions of human ⛵ and computer 🚢, blank spots and undetected computer ships
         //                  🌊, human hit ships 💥, human undetected ships (with capital letter) and found computer ships ☠️.
 
-        //Computer grid:    Symbols for positions of human ⚓ and computer ⛵, blank spots and undetected
+        //Computer grid:    Symbols for positions of human ⛵ and computer 🚢, blank spots and undetected
         //                  human ships 🌊, computer hit ships 💥 and found human ships ☠️.
 
-        //Hid grid:         Symbols for positions of human ⚓ and computer ⛵, blank spots and undetected human ships 🌊,
+        //Hid grid:         Symbols for positions of human ⛵ and computer 🚢, blank spots and undetected human ships 🌊,
         //                  computer hit ships 💥, computer undetected ships (with capital letter) and found human ships ☠️.
 
 }

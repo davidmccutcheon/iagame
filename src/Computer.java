@@ -32,4 +32,18 @@ public class Computer extends Player {
         }
         return done;
     }
+
+    public void firstSpot(Position[][] humanGrid, Position[][] compGrid, Position[][] hidGrid) {
+        int x = 5;
+        int y = 5;
+        humanGrid[x][y].setStatus("comp");
+        compGrid[x][y].setStatus("comp");
+        hidGrid[x][y].setStatus("comp");
+
+        humanGrid[x][y].setHumView("🚢");
+        compGrid[x][y].setCompView("🚢");
+        hidGrid[x][y].setHidView("🚢");
+        hidGrid[x][y].setHumView("🚢");
+        hidGrid[x][y].setCompView("🚢");
+    }
 }
