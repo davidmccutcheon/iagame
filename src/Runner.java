@@ -2,7 +2,13 @@ import java.util.*;
 
 public class Runner {
 
-    //Consider making the hid view the master view and just doing an automatic update of the others based off that
+    //To do next:
+            // Make the hid view the master view and just doing an automatic update of the others based off that
+            // Use the above to allow moving / setting the xPos and yPos as well as scattering the word to automatically
+            // create the right view. This should make everything easier for later so it's important to do now.
+
+            //Then, set up a function so that the turns alternate. Consider making a Move class so you can set number
+            //and types of moves.
 
     public static void main (String args[]) {
         Human human = new Human();

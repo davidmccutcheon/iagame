@@ -4,6 +4,7 @@ public class Position {
     private int yCoor;
 
     private String status;
+    private String letter;
     private String compView;
     private String humView;
     private String hidView;
@@ -11,6 +12,7 @@ public class Position {
     public Position (int x, int y) {
         this.xCoor = x;
         this.yCoor = y;
+        this.letter = "z";
 
         this.status = "empty";
         this.compView = "\uD83C\uDF0A";
@@ -24,6 +26,10 @@ public class Position {
 
     public int getyCoor() {
         return yCoor;
+    }
+
+    public void setLetter(String letter) {
+        this.letter = letter;
     }
 
     public String getStatus() {

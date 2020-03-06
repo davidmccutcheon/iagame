@@ -8,11 +8,16 @@ public class Player {
     private String[] largeOptions = {"uv", "wx", "yz", "AB", "CD"};
     private String[] wordArray;
 
+    private int xPos;
+    private int yPos;
+
     private String name;
     private String word;
+    private int movesSaved;
 
     public Player(String name) {
         this.name = name;
+        this.movesSaved = 0;
     }
 
     public void setWord(String name) {
@@ -45,7 +50,9 @@ public class Player {
                 System.out.print(grid[i][j] + " ");
                 if (!grid[i][j].equals("\uD83C\uDF0A")) {
                     if (!grid[i][j].equals("⛵")) {
-                        System.out.print(" ");
+                        if(!grid[i][j].equals("\uD83D\uDEA2")) {
+                            System.out.print(" ");
+                        }
                     }
                 }
             }
@@ -82,5 +89,29 @@ public class Player {
 
     public String getWord() {
         return word;
+    }
+
+    public int getMovesSaved() {
+        return movesSaved;
+    }
+
+    public void saveAMove() {
+        this.movesSaved++;
+    }
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
     }
 }
