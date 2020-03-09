@@ -5,8 +5,7 @@ public class Computer extends Player {
         super ("Computer");
     }
 
-    public Position[][][] scatterWord(Position[][] humGrid, Position[][] compGrid, Position[][] hidGrid) {
-        Position[][][] group = {humGrid, compGrid, hidGrid};
+    public Position[][] scatterWord(Position[][] hidGrid) {
         int x = 1;
         int y = 1;
         for (int i = 0; i < this.getWord().length(); i++) {
@@ -14,13 +13,11 @@ public class Computer extends Player {
             pos.setCompView(getWord().substring(i, i + 1));
             pos.setHidView(getWord().substring(i, i + 1));
             pos.setStatus("hidCompShip");
-            humGrid[x][y] = pos;
-            compGrid[x][y] = pos;
             hidGrid[x][y] = pos;
             x++;
             y++;
         }
-        return group;
+        return hidGrid;
     }
 
     public String[][] makeCompView (Position[][] grid) {
@@ -33,15 +30,11 @@ public class Computer extends Player {
         return done;
     }
 
-    public void firstSpot(Position[][] humanGrid, Position[][] compGrid, Position[][] hidGrid) {
+    public void firstSpot(Position[][] hidGrid) {
         int x = 5;
         int y = 5;
-        humanGrid[x][y].setStatus("comp");
-        compGrid[x][y].setStatus("comp");
         hidGrid[x][y].setStatus("comp");
 
-        humanGrid[x][y].setHumView("🚢");
-        compGrid[x][y].setCompView("🚢");
         hidGrid[x][y].setHidView("🚢");
         hidGrid[x][y].setHumView("🚢");
         hidGrid[x][y].setCompView("🚢");

@@ -13,8 +13,6 @@ public class Runner {
     public static void main (String args[]) {
         Human human = new Human();
         Computer computer = new Computer();
-        Position[][] humanGrid = new Position[10][10];
-        Position[][] compGrid = new Position[10][10];
         Position[][] hidGrid = new Position[10][10];
 
         human.setName();
@@ -22,13 +20,13 @@ public class Runner {
         computer.setWordArray(human.getWordArray());
         computer.setWord(computer.getName());
 
-        human.scatterWord(humanGrid, compGrid, hidGrid);
-        computer.scatterWord(humanGrid, compGrid, hidGrid);
+        human.scatterWord(hidGrid);
+        computer.scatterWord(hidGrid);
 
         System.out.println("STARTING BOARD: " + human.getName() + "'s view");
-        human.printCurrentGrid(human.makeHumView(humanGrid));
-        human.firstSpot(humanGrid, compGrid, hidGrid);
-        computer.firstSpot(humanGrid, compGrid, hidGrid);
+        human.printCurrentGrid(human.makeHumView(hidGrid));
+        human.firstSpot(hidGrid);
+        computer.firstSpot(hidGrid);
     }
 
     //CODEBREAKER
