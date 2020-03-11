@@ -13,11 +13,13 @@ public class Player {
 
     private String name;
     private String word;
-    private int movesSaved;
+    private int actionsSaved;
+    private int chances;
 
     public Player(String name) {
         this.name = name;
-        this.movesSaved = 0;
+        this.actionsSaved = 0;
+        this.chances = 5;
     }
 
     public void setWord(String name) {
@@ -91,12 +93,20 @@ public class Player {
         return word;
     }
 
-    public int getMovesSaved() {
-        return movesSaved;
+    public int getActionsSaved() {
+        return actionsSaved;
     }
 
-    public void saveAMove() {
-        this.movesSaved++;
+    public void saveAnAction() {
+        this.actionsSaved++;
+    }
+
+    public int getChances() {
+        return chances;
+    }
+
+    public void setChances(int chances) {
+        this.chances = chances;
     }
 
     public int getxPos() {

@@ -3,14 +3,16 @@ import java.util.*;
 public class Runner {
 
     //To do next:
-            // Make the hid view the master view and just doing an automatic update of the others based off that
-            // Use the above to allow moving / setting the xPos and yPos as well as scattering the word to automatically
-            // create the right view. This should make everything easier for later so it's important to do now.
+            // Make it possible to successfully move.
+            // Set up landmines.
+            // Make it possible to board.
+            // Make sure saving actions works.
 
-            //Then, set up a function so that the turns alternate. Consider making a Move class so you can set number
-            //and types of moves.
+            //Consider making an Action class so you can set number and types of actions.
 
     public static void main (String args[]) {
+        boolean theGameIsOn = true;
+
         Human human = new Human();
         Computer computer = new Computer();
         Position[][] hidGrid = new Position[10][10];
@@ -23,10 +25,15 @@ public class Runner {
         human.scatterWord(hidGrid);
         computer.scatterWord(hidGrid);
 
-        System.out.println("STARTING BOARD: " + human.getName() + "'s view");
-        human.printCurrentGrid(human.makeHumView(hidGrid));
         human.firstSpot(hidGrid);
         computer.firstSpot(hidGrid);
+        System.out.println("STARTING BOARD: " + human.getName() + "'s view");
+        human.printCurrentGrid(human.makeHumView(hidGrid));
+
+        while (human.getChances() > 0 && computer.getChances() > 0) {
+            human.turn(2 + human.getActionsSaved(), hidGrid);
+            computer.turn(2 + computer.getActionsSaved(), hidGrid);
+        }
     }
 
     //CODEBREAKER

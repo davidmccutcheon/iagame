@@ -11,7 +11,6 @@ public class Computer extends Player {
         for (int i = 0; i < this.getWord().length(); i++) {
             Position pos = new Position(x, y);
             pos.setCompView(getWord().substring(i, i + 1));
-            pos.setHidView(getWord().substring(i, i + 1));
             pos.setStatus("hidCompShip");
             hidGrid[x][y] = pos;
             x++;
@@ -35,8 +34,12 @@ public class Computer extends Player {
         int y = 5;
         hidGrid[x][y].setStatus("comp");
 
-        hidGrid[x][y].setHidView("🚢");
         hidGrid[x][y].setHumView("🚢");
         hidGrid[x][y].setCompView("🚢");
+    }
+
+    public void turn (int numMoves, Position[][] hidGrid) {
+        System.out.print("(computer turn)");
+        this.setChances(getChances() - 1);
     }
 }
