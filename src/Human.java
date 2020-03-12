@@ -58,17 +58,16 @@ public class Human extends Player {
         int y = 1;
         System.out.println("");
         System.out.println("Pick a coordinate to land first. You will have to move spot by spot from here for the rest of the game.");
-        System.out.println("x-coordinate: ");
+        System.out.println("Column: ");
         x = coordinateHandling("position selection along the x-axis", x, hidGrid);
         this.setxPos(x);
-        System.out.println("y-coordinate");
+        System.out.println("Row: ");
         y = coordinateHandling("position selection along the y-axis", y, hidGrid);
         this.setyPos(y);
 
         hidGrid[x][y].setStatus("hum");
 
         System.out.println("Here is the board:");
-        this.printCurrentGrid(this.makeHumView(hidGrid));
     }
 
     public void turn (int numMoves, Position[][] hidGrid) {
@@ -79,9 +78,11 @@ public class Human extends Player {
                 case "move":
                     System.out.println("You have chosen to move. Please indicate compass direction by typing 'N', 'E', 'S', 'W', 'NE', 'NW', 'SE' or 'SW'.");
                     int[] mIQ = chooseDirection(hsc.next());
-                    hidGrid[mIQ[0]][mIQ[1]].setStatus("hum");
                     //this just sets to empty for now; use letter to figure out how to really set it
                     hidGrid[this.getxPos()][this.getyPos()].setStatus("empty");
+                    setxPos(mIQ[0]);
+                    setyPos(mIQ[1]);
+                    hidGrid[this.getxPos()][this.getyPos()].setStatus("hum");
                     this.printCurrentGrid(this.makeHumView(hidGrid));
                     break;
                 case "board":
@@ -161,11 +162,10 @@ public class Human extends Player {
         int curY = this.getyPos();
         int xIQ;
         int yIQ;
-        //currently doesn't work: W is E, E is W, etc.
         switch(indicator) {
             case "N":
                 xIQ = curX;
-                yIQ = curY + 1;
+                yIQ = curY - 1;
                 break;
             case "E":
                 xIQ = curX + 1;
@@ -173,7 +173,7 @@ public class Human extends Player {
                 break;
             case "S":
                 xIQ = curX;
-                yIQ = curY - 1;
+                yIQ = curY + 1;
                 break;
             case "W":
                 xIQ = curX - 1;
@@ -181,19 +181,19 @@ public class Human extends Player {
                 break;
             case "NE":
                 xIQ = curX + 1;
-                yIQ = curY + 1;
+                yIQ = curY - 1;
                 break;
             case "NW":
                 xIQ = curX - 1;
-                yIQ = curY + 1;
+                yIQ = curY - 1;
                 break;
             case "SE":
                 xIQ = curX + 1;
-                yIQ = curY - 1;
+                yIQ = curY + 1;
                 break;
             case "SW":
                 xIQ = curX - 1;
-                yIQ = curY - 1;
+                yIQ = curY + 1;
                 break;
             default:
                 xIQ = curX;

@@ -3,12 +3,11 @@ import java.util.*;
 public class Runner {
 
     //To do next:
-            // Make it possible to successfully move.
             // Set up landmines.
             // Make it possible to board.
             // Make sure saving actions works.
 
-            //Consider making an Action class so you can set number and types of actions.
+            //Consider making a playerIsPresent boolean instead of having it be a status
 
     public static void main (String args[]) {
         boolean theGameIsOn = true;
@@ -51,15 +50,11 @@ public class Runner {
     //the other's word. Each has five tries or they lose; they can pass without sacrificing a try. If a player guesses
     //correctly, or their opponent loses, the player wins.
 
-
-    //Arrays:
+    //Views:
         //Human grid:       Symbols for positions of human ⛵ and computer 🚢, blank spots and undetected computer ships
         //                  🌊, human hit ships 💥, human undetected ships (with capital letter) and found computer ships ☠️.
 
         //Computer grid:    Symbols for positions of human ⛵ and computer 🚢, blank spots and undetected
         //                  human ships 🌊, computer hit ships 💥 and found human ships ☠️.
-
-        //Hid grid:         Symbols for positions of human ⛵ and computer 🚢, blank spots and undetected human ships 🌊,
-        //                  computer hit ships 💥, computer undetected ships (with capital letter) and found human ships ☠️.
 
 }
